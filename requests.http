@@ -1,0 +1,106 @@
+### Get all regions
+GET http://localhost:3000/regions HTTP/1.1
+Accept: application/json
+
+### Get single region
+GET http://localhost:3000/regions/:id HTTP/1.1
+Accept: application/json
+
+### Get all user regions
+GET http://localhost:3000/regions?user=67bfd99cfa80dcab259f6832 HTTP/1.1
+Accept: application/json
+
+### Get all regions near point (longitude, latitude, distance)
+GET http://localhost:3000/regions/point-distance/-47.112952282523196/-18.40004856723054/15 HTTP/1.1
+Accept: application/json
+
+### Get all user regions near point (longitude, latitude, distance)
+GET http://localhost:3000/regions/point-distance/-47.112952282523196/-18.40004856723054/15?user=67bfd99cfa80dcab259f6832 HTTP/1.1
+Accept: application/json
+
+### Get region which includes point (longitude, latitude)
+GET http://localhost:3000/regions/includes-point/-46.955536502973075/-19.464130255663207 HTTP/1.1
+Accept: application/json
+
+### Get user region which includes point (longitude, latitude)
+GET http://localhost:3000/regions/includes-point/-46.955536502973075/-19.464130255663207?user=67bfd99cfa80dcab259f6832 HTTP/1.1
+Accept: application/json
+
+### Create region
+POST http://localhost:3000/regions HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Polígono A",
+  "polygon": {
+    "coordinates":[
+              [
+                [
+                  -47.115052282523196,
+                  -18.42004856723054
+                ],
+                [
+                  -47.112952282523196,
+                  -18.508521684870615
+                ],
+                [
+                  -47.03607795454727,
+                  -18.508521684870615
+                ],
+                [
+                  -47.03607795454727,
+                  -18.45004856723054
+                ],
+                [
+                  -47.115052282523196,
+                  -18.42004856723054
+                ]
+              ]
+            ],
+    "type": "Polygon"
+  },
+  "userId": "67bfd99cfa80dcab259f6832"
+}
+
+### Edit region name
+PATCH  http://localhost:3000/regions/67bf7e7c522562b8db4971f4/name HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Polígono A (Próximo)"
+}
+
+### Get users with pagination
+GET http://localhost:3000/users?page=0&limit=2 HTTP/1.1
+Accept: application/json
+
+### Create user with coordinates
+POST http://localhost:3000/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "user1@email.com",
+  "name": "meu nome",
+  "coordinates": [8.5398562, 47.3724404]
+}
+
+### Create user with address
+POST http://localhost:3000/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "user2@email.com",
+  "name": "meu nome",
+  "address": "Alameda das Orquídeas - Granja Ouro Branco"
+}
+### Get user
+GET http://localhost:3000/users/67bf9b6b2e926643ec73d3a0 HTTP/1.1
+Accept: application/json
+
+### Update user address
+PATCH http://localhost:3000/users/67bf9b6b2e926643ec73d3a0/address HTTP/1.1
+Content-Type: application/json
+
+{
+  "address": "meu endereço atualizado"
+}
