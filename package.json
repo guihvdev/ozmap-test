@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.6",
     "@types/express": "^4.17.18",
+    "@types/geojson": "^7946.0.16",
     "@types/mocha": "^10.0.2",
     "@types/node": "^20.8.0",
     "@types/reflect-metadata": "^0.1.0",
