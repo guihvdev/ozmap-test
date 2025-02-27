@@ -1,8 +1,8 @@
-import { ICreateRegionDto } from '../../../../@protocols/region.protocol'
+import { ICreateRegionDto, IUpdateRegionPolygonDto } from '../../../../@protocols/region.protocol'
 import { BadRequestException } from '../../../exceptions/bad-request.exception'
 
 export class ClosePolygonValidator {
-  validate(params: ICreateRegionDto) {
+  validate(params: ICreateRegionDto | IUpdateRegionPolygonDto) {
     const newPolygonOutBoundPositions = params.polygon.coordinates[0]
     const openCoordinates = newPolygonOutBoundPositions[0]
     const closeCoordinates =

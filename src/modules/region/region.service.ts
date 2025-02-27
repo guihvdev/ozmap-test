@@ -12,7 +12,7 @@ class RegionService {
   constructor(
     private readonly regionModel: typeof RegionModel,
     private readonly userModel: typeof UserModel
-  ) {}
+  ) { }
 
   async getRegions(userId?: string) {
     const query = {
@@ -87,6 +87,9 @@ class RegionService {
     _id: string,
     params: IUpdateRegionCoordinatesdTOParams
   ) {
+    new ClosePolygonValidator().validate(params)
+    await new RegionConflictValidator().validate({ ...params, id: _id }, this.regionModel)
+
     await this.regionModel.updateOne({ _id }, { polygon: params.polygon })
   }
 

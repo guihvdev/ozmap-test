@@ -45,7 +45,6 @@ describe('Region e2e', () => {
           .get(`/regions`)
           .expect(200)
           .then((res) => {
-            console.debug(res.body.data)
             expect(res.body.data.type).to.be.equal('FeatureCollection')
             expect(res.body.data.features.length).to.be.equal(
               regionsMock.length
@@ -233,7 +232,13 @@ describe('Region e2e', () => {
           .collection('regions')
           .insertOne(regionsMock[0])
 
-        const newPolygon: IUpdateRegionPolygonDto = {
+        const firstUpdate: IUpdateRegionPolygonDto = {
+          polygon: {
+            coordinates: regionsMock[0].polygon.coordinates,
+            type: 'Polygon'
+          }
+        }
+        const secondUpdate: IUpdateRegionPolygonDto = {
           polygon: {
             coordinates: regionsMock[1].polygon.coordinates,
             type: 'Polygon'
@@ -242,14 +247,18 @@ describe('Region e2e', () => {
 
         await request(app)
           .patch(`/regions/${insertedId.toString()}/polygon`)
-          .send(newPolygon)
+          .send(firstUpdate)
+          .expect(204)
+        await request(app)
+          .patch(`/regions/${insertedId.toString()}/polygon`)
+          .send(secondUpdate)
           .expect(204)
 
         await appDatabase.db
           .collection('regions')
           .findOne({ _id: insertedId })
           .then((region: IRegion) => {
-            expect(region.polygon).to.deep.equal(newPolygon.polygon)
+            expect(region.polygon).to.deep.equal(secondUpdate.polygon)
           })
       })
     })
