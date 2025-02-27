@@ -1,11 +1,12 @@
 # Para iniciar o projeto
-- Faça um clone do projeto
-- Rode o comando ```docker compose up --build```
-- A api será exposta na porta 3000
+- Faça um clone do projeto ```git clone git@github.com:guihvdev/ozmap-test.git```
+- Instale as dependências do projeto ```yarn``
+- Suba os containers da aplicação ```docker compose up --build```
+- A api será exposta na porta 3000!
 
 # Testes
-- Rode o comando yarn test para execução dos testes unitários.
-- Rode o comando yarn test:e2e para execução dos testes end to end.
+- Rode o comando ```yarn test``` para execução dos testes unitários.
+- Rode o comando ```yarn test:e2e``` para execução dos testes end to end.
 - Obs: Iniciar o banco com docker previamente seguindo instruções anteriores.
 
 # Chamadas a API
