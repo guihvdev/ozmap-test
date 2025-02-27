@@ -4,7 +4,7 @@
   "description": "DevOZ - Tech test",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon src/server.ts",
+    "dev": "NODE_ENV=development nodemon src/server.ts",
     "test": "NODE_ENV=test mocha --require ts-node/register ./src/**/*.spec.ts --exit",
     "test:e2e": "NODE_ENV=test mocha --require ts-node/register ./tests/*.e2e.spec.ts --exit",
     "prepare": "husky",
