@@ -24,7 +24,7 @@ export class UserModule {
     loggerService: LoggerService,
     geocoder: GeoCoder
   ) {
-    this._userService = new UserService(UserModel, database, geocoder)
+    this._userService = new UserService(UserModel, database,  loggerService, geocoder)
     this._userController = new UserController(
       this._userService,
       router,
