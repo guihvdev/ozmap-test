@@ -1,7 +1,7 @@
 import { Coordinates } from '../../../../@protocols/region.protocol'
 import { ICreateUserDto } from '../../../../@protocols/user.protocol'
 import { BadRequestException } from '../../../exceptions/bad-request.exception'
-import { emailRegexLib } from '../../utils/email-regex-lib.util'
+import * as validator from 'email-validator'
 
 export class CreateUserDtoValidator {
   validate(params: ICreateUserDto) {
@@ -26,7 +26,7 @@ export class CreateUserDtoValidator {
     if (!email) return { message: "field 'email' must be defined as a string" }
     if (typeof email !== 'string')
       return { message: "field 'email' must be a string" }
-    if (!emailRegexLib.test(email))
+    if (!validator.validate(email)) 
       return { message: "field 'email' must be a valid email" }
   }
 

@@ -28,6 +28,15 @@ describe('CreateUserDtoValidator', () => {
     }
     expect(() => instance.validate(createUserParams)).to.throw()
   })
+  it('should throw an error if email is invalid', () => {
+    const createUserParams: ICreateUserDto = {
+      email: 'invalig+~emaíl@domain.com',
+      name: faker.person.firstName(),
+      address: faker.string.alphanumeric(),
+      coordinates: [faker.number.int(), faker.number.int()]
+    }
+    expect(() => instance.validate(createUserParams)).to.throw()
+  })
   it('should throw an error if name is not provided', () => {
     const createUserParams: ICreateUserDto = {
       email: faker.internet.email(),
