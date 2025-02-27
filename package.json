@@ -2,10 +2,13 @@
   "name": "oztest",
   "version": "0.0.1",
   "description": "DevOZ - Tech test",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon index.ts",
-    "test": "mocha --require ts-node/register ./src/**/*.spec.ts --exit"
+    "dev": "nodemon src/server.ts",
+    "test": "NODE_ENV=test mocha --require ts-node/register ./src/**/*.spec.ts --exit",
+    "test:e2e": "NODE_ENV=test mocha --require ts-node/register ./tests/*.e2e.spec.ts --exit",
+    "prepare": "husky",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\""
   },
   "author": "",
   "license": "ISC",
@@ -13,10 +16,14 @@
     "@faker-js/faker": "^8.1.0",
     "@typegoose/typegoose": "^11.5.0",
     "chai": "^4.3.10",
+    "dotenv": "^16.4.7",
     "express": "^4.18.2",
-    "mongoose": "^7.5.3"
+    "mongoose": "^7.5.3",
+    "node-nominatim2": "^0.1.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@types/chai": "^4.3.6",
     "@types/express": "^4.17.18",
     "@types/geojson": "^7946.0.16",
@@ -25,8 +32,12 @@
     "@types/reflect-metadata": "^0.1.0",
     "@types/sinon": "^10.0.17",
     "@types/supertest": "^2.0.13",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "micromatch": "^4.0.8",
     "mocha": "^10.2.0",
     "nodemon": "^3.0.1",
+    "prettier": "^3.5.2",
     "sinon": "^16.0.0",
     "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
