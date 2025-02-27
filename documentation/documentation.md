@@ -1,6 +1,6 @@
 # Para iniciar o projeto
 - Faça um clone do projeto ```git clone git@github.com:guihvdev/ozmap-test.git```
-- Instale as dependências do projeto ```yarn``
+- Instale as dependências do projeto ```yarn```
 - Suba os containers da aplicação ```docker compose up --build```
 - A api será exposta na porta 3000!
 
@@ -10,22 +10,22 @@
 - Obs: Iniciar o banco com docker previamente seguindo instruções anteriores.
 
 # Chamadas a API
-- Utilize a extensão REST Client do VSCode e abra o arquivo ```requests.http``` para efetuar as requisições
+- Utilize a extensão REST Client do VSCode e abra o arquivo ```requests.http``` para efetuar as requisições.
 
 # Regras de negócio
 
 ## Usuário
 ### Ao criar:
-- Deve prover um email válido
-- Usuário deve prover somente endereço ou coordenadas e backend resolverá a informação faltante
-- Deve prover um email único e ainda não usado
+- Deve prover um email válido.
+- Usuário deve prover somente endereço ou coordenadas e a API resolverá a informação faltante.
+- Deve prover um email único e ainda não usado.
 ### Ao editar:
-- Deve prover somente endereço ou coordenadas
+- Usuário deve prover somente endereço ou coordenadas e a API resolverá a informação faltante.
 
 ## Regiões
 ### Ao criar:
-- Deve prover um polígono válido
-- Não pode conflitar com um polígono já criado
+- Deve prover um polígono válido.
+- Não pode conflitar com um polígono já criado.
 ### Ao editar:
-- Deve prover um polígono válido
-- Não pode conflitar com um polígono já criado
+- Deve prover um polígono válido.
+- Não pode conflitar com um polígono já criado.
