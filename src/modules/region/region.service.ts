@@ -3,6 +3,7 @@ import {
   IUpdateRegionPolygonDto as IUpdateRegionCoordinatesdTOParams,
   IUpdateRegionNameDto as IUpdateRegionNameDtoParams
 } from '../../@protocols/region.protocol'
+import { LoggerService } from '../logger/logger.service'
 import { UserModel } from '../user/user.module'
 import { RegionModel } from './region.module'
 import { ClosePolygonValidator } from './validators/business/close-polygon.validator'
@@ -11,7 +12,8 @@ import { RegionConflictValidator } from './validators/business/region-conflict.v
 class RegionService {
   constructor(
     private readonly regionModel: typeof RegionModel,
-    private readonly userModel: typeof UserModel
+    private readonly userModel: typeof UserModel,
+    private readonly loggerService: LoggerService
   ) { }
 
   async getRegions(userId?: string) {
@@ -76,11 +78,13 @@ class RegionService {
       { _id: params.userId },
       { $push: { regions: region._id } }
     )
+    this.loggerService.debug(`Region entity created: ${params.name}`, 'RegionService.createRegion')
     return region
   }
 
   async updateRegionName(_id: string, params: IUpdateRegionNameDtoParams) {
     await this.regionModel.updateOne({ _id }, { name: params.name })
+    this.loggerService.debug(`Region entity name updated: ${params.name}`, 'RegionService.updateRegionName')
   }
 
   async updateRegionPolygon(
@@ -91,10 +95,12 @@ class RegionService {
     await new RegionConflictValidator().validate({ ...params, id: _id }, this.regionModel)
 
     await this.regionModel.updateOne({ _id }, { polygon: params.polygon })
+    this.loggerService.debug(`Region entity polygon updated`, 'RegionService.updateRegionPolygon')
   }
 
   async deleteRegion(_id: string) {
     await this.regionModel.findOneAndUpdate({ _id }, { isDeleted: true })
+    this.loggerService.debug(`Region entity soft deleted`, 'RegionService.deleteRegion')
   }
 }
 

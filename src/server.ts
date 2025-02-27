@@ -3,8 +3,8 @@ import { geocoder } from './modules/geocoder/geocoder'
 
 createApp({ geocoder })
   .then(({ app, loggerService }) => {
-    app.listen(3000, () => {
-      loggerService.log('Server running on port 3000', 'Bootstrap')
+    app.listen(process.env.API_PORT, () => {
+      loggerService.log(`Server running on port ${process.env.API_PORT}`, 'Bootstrap')
     })
   })
   .catch((err) => {

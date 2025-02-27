@@ -34,6 +34,7 @@ services:
       DB_AUTH_SOURCE: admin
       DB_USERNAME: root
       DB_PASSWORD: example
+      API_PORT: 3000
     ports:
       - "3000:3000"
     volumes:

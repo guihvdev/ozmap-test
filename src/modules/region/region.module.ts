@@ -23,7 +23,7 @@ export class RegionModule {
     errorTrackingService: ErrorTrackingService,
     loggerService: LoggerService
   ) {
-    this.regionService = new RegionService(RegionModel, UserModel)
+    this.regionService = new RegionService(RegionModel, UserModel, loggerService)
     this.regionController = new RegionController(
       this.regionService,
       router,
